@@ -7,14 +7,14 @@
 void find(char* path, char* target_file);
 
 int main(int argc, char* argv[]) {
-    if (argc >= 3) {
+    if (argc > 3) {
         {
             fprintf(2, "ERROR: You need pass in only 2 arguements\n");
             exit(1);
         }
     }
-    char* target_path = argv[0];
-    char* target_file = argv[1];
+    char* target_path = argv[1];
+    char* target_file = argv[2];
     find(target_path, target_file);
     exit(0);
 }
@@ -27,12 +27,12 @@ void find(char* path, char* target_file) {
 
     if ((fd = open(path, 0)) < 0) {
         fprintf(2, "ERROR: Can't open %s \n", path);
-        exit(1);
+        return;
     }
 
     if (fstat(fd, &st) < 0) {
         fprintf(2, "ERROR: Can't stat %s \n", path);
-        exit(1);
+        return;
     }
 
     // read the name of each file/folder under the folder specified by fd
