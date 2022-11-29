@@ -44,6 +44,7 @@ void find(char* path, char* target_file) {
             continue;
         }
         memmove(p, de.name, DIRSIZ);
+        
 
         if (stat(buf, &st) < 0) {
             fprintf(2, "ERROR: Can't stat %s \n", buf);
